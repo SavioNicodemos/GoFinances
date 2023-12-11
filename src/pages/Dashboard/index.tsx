@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import income from '../../assets/income.svg';
 import outcome from '../../assets/outcome.svg';
@@ -8,10 +8,10 @@ import api from '../../services/api';
 
 import Header from '../../components/Header';
 
-import formatValue from '../../utils/formatValue';
 import formatDate from '../../utils/formatDate';
+import formatValue from '../../utils/formatValue';
 
-import { Container, CardContainer, Card, TableContainer } from './styles';
+import { Card, CardContainer, Container, TableContainer } from './styles';
 
 interface Transaction {
   id: string;
@@ -32,7 +32,11 @@ interface Balance {
 
 const Dashboard: React.FC = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [balance, setBalance] = useState<Balance>({} as Balance);
+  const [balance, setBalance] = useState<Balance>({
+    income: '0',
+    outcome: '0',
+    total: '0',
+  });
 
   useEffect(() => {
     async function loadTransactions(): Promise<void> {
