@@ -1,15 +1,17 @@
 import React from 'react';
 
-import { Switch, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import Dashboard from '../pages/Dashboard';
 import Import from '../pages/Import';
 
-const Routes: React.FC = () => (
-  <Switch>
-    <Route path="/" exact component={Dashboard} />
-    <Route path="/import" component={Import} />
-  </Switch>
+const AppRoutes: React.FC = () => (
+  <Router>
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/import" element={<Import />} />
+    </Routes>
+  </Router>
 );
 
-export default Routes;
+export default AppRoutes;
