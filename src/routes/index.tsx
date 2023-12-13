@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from '../pages/Dashboard';
 import Import from '../pages/Import';
 
-const AppRoutes: React.FC = () => (
+const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Dashboard />} />
     <Route path="/import" element={<Import />} />

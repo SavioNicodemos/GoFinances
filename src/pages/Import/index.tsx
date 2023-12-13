@@ -18,7 +18,7 @@ interface FileProps {
   readableSize: string;
 }
 
-const Import: React.FC = () => {
+const Import = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
   const navigate = useNavigate();
 

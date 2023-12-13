@@ -11,7 +11,7 @@ interface FileListProps {
   files: FileProps[];
 }
 
-const FileList: React.FC<FileListProps> = ({ files }: FileListProps) => {
+const FileList = ({ files }: FileListProps) => {
   return (
     <Container>
       {files.map(uploadedFile => (

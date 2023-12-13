@@ -33,12 +33,8 @@
     "import/prefer-default-export": "off",
     "react/jsx-no-bind": "off",
     "@typescript-eslint/ban-ts-ignore": "off",
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true
-      }
-    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/require-default-props": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

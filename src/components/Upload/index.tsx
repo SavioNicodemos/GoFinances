@@ -7,7 +7,7 @@ interface UploadProps {
   onUpload: Function;
 }
 
-const Upload: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
+const Upload = ({ onUpload }: UploadProps) => {
   function renderDragMessage(
     isDragActive: boolean,
     isDragRejected: boolean,

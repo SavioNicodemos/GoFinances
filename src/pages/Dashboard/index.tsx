@@ -30,7 +30,7 @@ interface Balance {
   total: string;
 }
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [balance, setBalance] = useState<Balance>({
     income: '0',
