@@ -2,14 +2,14 @@ import React from 'react';
 
 import { Container, FileInfo } from './styles';
 
-interface FileProps {
+type FileProps = {
   name: string;
   readableSize: string;
-}
+};
 
-interface FileListProps {
+type FileListProps = {
   files: FileProps[];
-}
+};
 
 const FileList = ({ files }: FileListProps) => {
   return (

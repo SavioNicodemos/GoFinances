@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-interface ContainerProps {
+type ContainerProps = {
   size?: 'small' | 'large';
-}
+};
 
 export const Container = styled.div<ContainerProps>`
   background: #5636d3;

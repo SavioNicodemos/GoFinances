@@ -3,9 +3,9 @@ import React, { ReactNode } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { DropContainer, UploadMessage } from './styles';
 
-interface UploadProps {
+type UploadProps = {
   onUpload: Function;
-}
+};
 
 const Upload = ({ onUpload }: UploadProps) => {
   function renderDragMessage(

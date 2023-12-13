@@ -12,11 +12,11 @@ import { Container, Footer, ImportFileContainer, Title } from './styles';
 import alert from '../../assets/alert.svg';
 import api from '../../services/api';
 
-interface FileProps {
+type FileProps = {
   file: File;
   name: string;
   readableSize: string;
-}
+};
 
 const Import = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-interface CardProps {
+type CardProps = {
   $total?: boolean;
-}
+};
 
 export const Container = styled.div`
   width: 100%;

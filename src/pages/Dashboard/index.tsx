@@ -13,7 +13,7 @@ import formatValue from '../../utils/formatValue';
 
 import { Card, CardContainer, Container, TableContainer } from './styles';
 
-interface Transaction {
+type Transaction = {
   id: string;
   title: string;
   value: number;
@@ -22,13 +22,13 @@ interface Transaction {
   type: 'income' | 'outcome';
   category: { title: string };
   created_at: Date;
-}
+};
 
-interface Balance {
+type Balance = {
   income: string;
   outcome: string;
   total: string;
-}
+};
 
 const Dashboard = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);

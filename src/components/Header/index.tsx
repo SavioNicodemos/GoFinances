@@ -6,9 +6,9 @@ import { Container } from './styles';
 
 import Logo from '../../assets/logo.svg';
 
-interface HeaderProps {
+type HeaderProps = {
   size?: 'small' | 'large';
-}
+};
 
 const Header = ({ size = 'large' }: HeaderProps) => (
   <Container size={size}>
