@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import Dropzone from 'react-dropzone';
+import { useDropzone } from 'react-dropzone';
 import { DropContainer, UploadMessage } from './styles';
 
 interface UploadProps {
@@ -10,7 +10,7 @@ interface UploadProps {
 const Upload: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
   function renderDragMessage(
     isDragActive: boolean,
-    isDragRejest: boolean,
+    isDragRejected: boolean,
   ): ReactNode {
     if (!isDragActive) {
       return (
@@ -18,30 +18,32 @@ const Upload: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
       );
     }
 
-    if (isDragRejest) {
-      return <UploadMessage type="error">Arquivo não suportado</UploadMessage>;
+    if (isDragRejected) {
+      return <UploadMessage $type="error">Arquivo não suportado</UploadMessage>;
     }
 
-    return <UploadMessage type="success">Solte o arquivo aqui</UploadMessage>;
+    return <UploadMessage $type="success">Solte o arquivo aqui</UploadMessage>;
   }
+
+  const { getRootProps, getInputProps, isDragActive, isDragReject } =
+    useDropzone({
+      accept: {
+        // @ts-ignore
+        'text/csv': ['.csv'],
+      },
+      onDropAccepted: files => onUpload(files),
+    });
 
   return (
     <>
-      <Dropzone
-        accept=".csv, application/vnd.ms-excel, text/csv,"
-        onDropAccepted={files => onUpload(files)}
+      <DropContainer
+        {...getRootProps({ className: 'dropzone' })}
+        $isDragActive={isDragActive}
+        $isDragReject={isDragReject}
       >
-        {({ getRootProps, getInputProps, isDragActive, isDragReject }): any => (
-          <DropContainer
-            {...getRootProps()}
-            isDragActive={isDragActive}
-            isDragReject={isDragReject}
-          >
-            <input {...getInputProps()} data-testid="upload" />
-            {renderDragMessage(isDragActive, isDragReject)}
-          </DropContainer>
-        )}
-      </Dropzone>
+        <input {...getInputProps()} data-testid="upload" />
+        {renderDragMessage(isDragActive, isDragReject)}
+      </DropContainer>
     </>
   );
 };
