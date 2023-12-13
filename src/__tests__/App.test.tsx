@@ -1,9 +1,15 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable import/first */
+import '@testing-library/jest-dom';
 
-jest.mock('../utils/formatValue.ts', () => ({
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import MockAdapter from 'axios-mock-adapter';
+import React from 'react';
+import { vi } from 'vitest';
+import App from '../App';
+import api from '../services/api';
+
+vi.mock('../utils/formatValue.ts', () => ({
   __esModule: true,
-  default: jest.fn().mockImplementation((value: number) => {
+  default: vi.fn().mockImplementation((value: number) => {
     switch (value) {
       case 6000:
         return 'R$ 6.000,00';
@@ -21,12 +27,6 @@ jest.mock('../utils/formatValue.ts', () => ({
   }),
 }));
 
-import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
-import MockAdapter from 'axios-mock-adapter';
-import api from '../services/api';
-import App from '../App';
-
 const apiMock = new MockAdapter(api);
 
 const wait = (amount = 0): Promise<void> => {
@@ -41,8 +41,6 @@ const actWait = async (amount = 0): Promise<void> => {
 
 describe('Dashboard', () => {
   it('should be able to list the total balance inside the cards', async () => {
-    const { getByTestId } = render(<App />);
-
     apiMock.onGet('transactions').reply(200, {
       transactions: [
         {
@@ -98,7 +96,11 @@ describe('Dashboard', () => {
       },
     });
 
-    await actWait();
+    const { getByTestId } = render(<App />);
+
+    await waitFor(() => expect(getByTestId('balance-income')).toBeTruthy(), {
+      timeout: 200,
+    });
 
     expect(getByTestId('balance-income')).toHaveTextContent('R$ 6.000,00');
 
