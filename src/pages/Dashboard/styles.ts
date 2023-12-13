@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface CardProps {
-  total?: boolean;
+  $total?: boolean;
 }
 
 export const Container = styled.div`
@@ -23,11 +23,11 @@ export const CardContainer = styled.section`
   margin-top: -150px;
 `;
 
-export const Card = styled.div`
-  background: ${({ total }: CardProps): string => (total ? '#FF872C' : '#fff')};
+export const Card = styled.div<CardProps>`
+  background: ${({ $total }) => ($total ? '#FF872C' : '#fff')};
   padding: 22px 32px;
   border-radius: 5px;
-  color: ${({ total }: CardProps): string => (total ? '#fff' : '#363F5F')};
+  color: ${({ $total }) => ($total ? '#fff' : '#363F5F')};
 
   header {
     display: flex;

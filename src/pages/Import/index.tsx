@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import filesize from 'filesize';
+import { filesize } from 'filesize';
 
-import Header from '../../components/Header';
 import FileList from '../../components/FileList';
+import Header from '../../components/Header';
 import Upload from '../../components/Upload';
 
-import { Container, Title, ImportFileContainer, Footer } from './styles';
+import { Container, Footer, ImportFileContainer, Title } from './styles';
 
 import alert from '../../assets/alert.svg';
 import api from '../../services/api';
@@ -20,7 +20,7 @@ interface FileProps {
 
 const Import: React.FC = () => {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   async function handleUpload(): Promise<void> {
     try {
@@ -32,10 +32,10 @@ const Import: React.FC = () => {
         }),
       );
 
-      history.goBack();
-    } catch (err) {
+      navigate('/');
+    } catch (err: any) {
       // eslint-disable-next-line no-console
-      console.log(err.response.error);
+      console.error(err.response.error);
     }
   }
 
