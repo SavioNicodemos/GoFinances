@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Container, FileInfo } from './styles';
 
-interface FileProps {
+type FileProps = {
   name: string;
   readableSize: string;
-}
+};
 
-interface FileListProps {
+type FileListProps = {
   files: FileProps[];
-}
+};
 
-const FileList: React.FC<FileListProps> = ({ files }: FileListProps) => {
+const FileList = ({ files }: FileListProps) => {
   return (
     <Container>
       {files.map(uploadedFile => (

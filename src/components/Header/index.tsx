@@ -6,11 +6,11 @@ import { Container } from './styles';
 
 import Logo from '../../assets/logo.svg';
 
-interface HeaderProps {
+type HeaderProps = {
   size?: 'small' | 'large';
-}
+};
 
-const Header: React.FC<HeaderProps> = ({ size = 'large' }: HeaderProps) => (
+const Header = ({ size = 'large' }: HeaderProps) => (
   <Container size={size}>
     <header>
       <Link to="/">

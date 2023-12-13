@@ -13,7 +13,7 @@ import formatValue from '../../utils/formatValue';
 
 import { Card, CardContainer, Container, TableContainer } from './styles';
 
-interface Transaction {
+type Transaction = {
   id: string;
   title: string;
   value: number;
@@ -22,15 +22,15 @@ interface Transaction {
   type: 'income' | 'outcome';
   category: { title: string };
   created_at: Date;
-}
+};
 
-interface Balance {
+type Balance = {
   income: string;
   outcome: string;
   total: string;
-}
+};
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [balance, setBalance] = useState<Balance>({
     income: '0',
@@ -73,7 +73,7 @@ const Dashboard: React.FC = () => {
                 {formatValue(Number(balance.outcome))}
               </h1>
             </Card>
-            <Card total>
+            <Card $total>
               <header>
                 <p>Total</p>
                 <img src={total} alt="Total" />
