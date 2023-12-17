@@ -10,28 +10,14 @@ import Header from '../../components/Header';
 
 import formatDate from '../../utils/formatDate';
 import formatValue from '../../utils/formatValue';
+import { capitalize } from '../../utils/strings';
 
+import { GetTransactionResponse } from '../../@dtos/Requests';
+import { Balance, TransactionDTO } from '../../@dtos/TransactionDTO';
 import { Card, CardContainer, Container, TableContainer } from './styles';
 
-type Transaction = {
-  id: string;
-  title: string;
-  value: number;
-  formattedValue: string;
-  formattedDate: string;
-  type: 'income' | 'outcome';
-  category: { title: string };
-  created_at: Date;
-};
-
-type Balance = {
-  income: string;
-  outcome: string;
-  total: string;
-};
-
 const Dashboard = () => {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<TransactionDTO[]>([]);
   const [balance, setBalance] = useState<Balance>({
     income: '0',
     outcome: '0',
@@ -39,8 +25,8 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    async function loadTransactions(): Promise<void> {
-      api.get('transactions').then(response => {
+    async function loadTransactions() {
+      api.get<GetTransactionResponse>('transactions').then(response => {
         setTransactions(response.data.transactions);
         setBalance(response.data.balance);
       });
@@ -99,12 +85,12 @@ const Dashboard = () => {
             <tbody>
               {transactions.map(transaction => (
                 <tr key={transaction.id}>
-                  <td className="title">{transaction.title}</td>
+                  <td className="title">{capitalize(transaction.title)}</td>
                   <td className={transaction.type}>
                     {transaction.type === 'outcome' && '- '}
                     {formatValue(Number(transaction.value))}
                   </td>
-                  <td>{transaction.category.title}</td>
+                  <td>{capitalize(transaction.category.title)}</td>
                   <td>{formatDate(transaction.created_at)}</td>
                 </tr>
               ))}
