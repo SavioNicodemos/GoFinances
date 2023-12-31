@@ -19,6 +19,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx src --fix",
     "ts:check": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest watch",

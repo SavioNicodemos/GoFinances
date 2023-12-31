@@ -11,7 +11,7 @@ type FileListProps = {
   files: FileProps[];
 };
 
-const FileList = ({ files }: FileListProps) => {
+function FileList({ files }: FileListProps) {
   return (
     <Container>
       {files.map(uploadedFile => (
@@ -26,6 +26,6 @@ const FileList = ({ files }: FileListProps) => {
       ))}
     </Container>
   );
-};
+}
 
 export default FileList;

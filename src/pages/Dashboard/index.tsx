@@ -16,7 +16,7 @@ import { GetTransactionResponse } from '../../@dtos/Requests';
 import { Balance, TransactionDTO } from '../../@dtos/TransactionDTO';
 import { Card, CardContainer, Container, TableContainer } from './styles';
 
-const Dashboard = () => {
+function Dashboard() {
   const [transactions, setTransactions] = useState<TransactionDTO[]>([]);
   const [balance, setBalance] = useState<Balance>({
     income: '0',
@@ -100,6 +100,6 @@ const Dashboard = () => {
       </Container>
     </>
   );
-};
+}
 
 export default Dashboard;

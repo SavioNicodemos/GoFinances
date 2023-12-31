@@ -1,3 +1,10 @@
+export type CategoryDTO = {
+  id: string;
+  title: string;
+  created_at: Date;
+  updated_at: Date;
+};
+
 export type TransactionDTO = {
   id: string;
   title: string;
@@ -14,10 +21,3 @@ export type Balance = {
   outcome: string;
   total: string;
 };
-
-export type CategoryDTO = {
-  id: string;
-  title: string;
-  created_at: Date;
-  updated_at: Date;
-}

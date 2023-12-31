@@ -10,18 +10,20 @@ type HeaderProps = {
   size?: 'small' | 'large';
 };
 
-const Header = ({ size = 'large' }: HeaderProps) => (
-  <Container size={size}>
-    <header>
-      <Link to="/">
-        <img src={Logo} alt="GoFinances" />
-      </Link>
-      <nav>
-        <Link to="/"> Listagem </Link>
-        <Link to="/import"> Importar </Link>
-      </nav>
-    </header>
-  </Container>
-);
+function Header({ size = 'large' }: HeaderProps) {
+  return (
+    <Container size={size}>
+      <header>
+        <Link to="/">
+          <img src={Logo} alt="GoFinances" />
+        </Link>
+        <nav>
+          <Link to="/"> Listagem </Link>
+          <Link to="/import"> Importar </Link>
+        </nav>
+      </header>
+    </Container>
+  );
+}
 
 export default Header;

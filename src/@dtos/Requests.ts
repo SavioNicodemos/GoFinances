@@ -1,4 +1,4 @@
-import { Balance, TransactionDTO } from "./TransactionDTO";
+import { Balance, TransactionDTO } from './TransactionDTO';
 
 export type GetTransactionResponse = {
   transactions: TransactionDTO[];

@@ -4,10 +4,10 @@ import { useDropzone } from 'react-dropzone';
 import { DropContainer, UploadMessage } from './styles';
 
 type UploadProps = {
-  onUpload: Function;
+  onUpload: (files: File[]) => void;
 };
 
-const Upload = ({ onUpload }: UploadProps) => {
+function Upload({ onUpload }: UploadProps) {
   function renderDragMessage(
     isDragActive: boolean,
     isDragRejected: boolean,
@@ -28,24 +28,21 @@ const Upload = ({ onUpload }: UploadProps) => {
   const { getRootProps, getInputProps, isDragActive, isDragReject } =
     useDropzone({
       accept: {
-        // @ts-ignore
         'text/csv': ['.csv'],
       },
       onDropAccepted: files => onUpload(files),
     });
 
   return (
-    <>
-      <DropContainer
-        {...getRootProps({ className: 'dropzone' })}
-        $isDragActive={isDragActive}
-        $isDragReject={isDragReject}
-      >
-        <input {...getInputProps()} data-testid="upload" />
-        {renderDragMessage(isDragActive, isDragReject)}
-      </DropContainer>
-    </>
+    <DropContainer
+      {...getRootProps({ className: 'dropzone' })}
+      $isDragActive={isDragActive}
+      $isDragReject={isDragReject}
+    >
+      <input {...getInputProps()} data-testid="upload" />
+      {renderDragMessage(isDragActive, isDragReject)}
+    </DropContainer>
   );
-};
+}
 
 export default Upload;

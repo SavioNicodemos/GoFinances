@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { filesize } from 'filesize';
 
+import { AxiosError } from 'axios';
 import FileList from '../../components/FileList';
 import Header from '../../components/Header';
 import Upload from '../../components/Upload';
@@ -18,7 +19,7 @@ type FileProps = {
   readableSize: string;
 };
 
-const Import = () => {
+function Import() {
   const [uploadedFiles, setUploadedFiles] = useState<FileProps[]>([]);
   const navigate = useNavigate();
 
@@ -33,9 +34,11 @@ const Import = () => {
       );
 
       navigate('/');
-    } catch (err: any) {
-      // eslint-disable-next-line no-console
-      console.error(err.response.error);
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        // eslint-disable-next-line no-console
+        console.error(err?.response?.data.error);
+      }
     }
   }
 
@@ -71,6 +74,6 @@ const Import = () => {
       </Container>
     </>
   );
-};
+}
 
 export default Import;

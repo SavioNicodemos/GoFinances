@@ -30,7 +30,8 @@ vi.mock('../utils/formatValue.ts', () => ({
 const apiMock = new MockAdapter(api);
 
 const wait = (amount = 0): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, amount));
+  // eslint-disable-next-line no-promise-executor-return
+  return new Promise(resolve => setTimeout(resolve, amount));
 };
 
 const actWait = async (amount = 0): Promise<void> => {
@@ -205,10 +206,10 @@ describe('Dashboard', () => {
 
     const file = new File(
       [
-        'title, type, value, category\
+        `title, type, value, category\
         Loan, income, 1500, Others\
         Website Hosting, outcome, 50, Others\
-        Ice cream, outcome, 3, Food',
+        Ice cream, outcome, 3, Food`,
       ],
       'import.csv',
       {
