@@ -24,7 +24,13 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       reporter: ['text', 'html'],
-      exclude: ['node_modules/'],
+      exclude: [
+        'node_modules/',
+        'src/@dtos/',
+        'src/index.tsx',
+        'src/react-app-env.d.ts',
+        'src/vite-env.d.ts',
+      ],
     },
   },
 });
